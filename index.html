@@ -3,193 +3,345 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ยะลา | มนต์เสน่ห์แห่งใต้สุดสยาม</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Prompt:wght@100;300;400;600&display=swap" rel="stylesheet">
+    <title>YALA | มนต์เสน่ห์แห่งใต้สุดสยาม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pridi:wght@200;300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #AF9164;
-            --dark: #0F1110;
-            --cream: #FDFBF7;
-            --white: #FFFFFF;
-            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --gold: #af944d;
+            --dark: #121212;
+            --light: #f9f7f2;
+            --white: #ffffff;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Prompt', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        /* --- Sidebar Menu (Right) --- */
-        .menu-btn {
-            position: fixed; top: 40px; right: 50px; z-index: 2000;
-            display: flex; align-items: center; gap: 15px;
-            cursor: pointer; color: var(--gold); font-size: 1.1rem; letter-spacing: 2px;
+        body {
+            background-color: var(--light);
+            font-family: 'Pridi', sans-serif;
+            color: var(--dark);
+            overflow-x: hidden;
         }
-        .bar-container { width: 30px; }
-        .bar { width: 100%; height: 1px; background: var(--gold); margin: 6px 0; transition: var(--transition); }
 
-        .sidebar {
-            position: fixed; top: 0; right: -100%; width: 450px; height: 100vh;
-            background: var(--dark); z-index: 1500; transition: var(--transition);
-            display: flex; flex-direction: column; justify-content: center; padding: 80px;
+        /* --- Luxury Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
         }
-        .sidebar.active { right: 0; }
-        .sidebar ul { list-style: none; }
-        .sidebar ul li { margin: 35px 0; transform: translateX(50px); opacity: 0; transition: 0.5s; }
-        .sidebar.active ul li { transform: translateX(0); opacity: 1; }
-        
-        .sidebar a {
-            color: var(--white); text-decoration: none; font-size: 1.8rem; font-weight: 300;
-            transition: 0.3s; font-family: 'Prompt', sans-serif;
+
+        nav.scrolled {
+            padding: 15px 60px;
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid rgba(175, 148, 77, 0.15);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
-        .sidebar a:hover { color: var(--gold); padding-left: 20px; }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            letter-spacing: 6px;
+            color: var(--dark);
+            text-decoration: none;
+            border: 1px solid var(--gold);
+            padding: 5px 20px;
+            transition: 0.3s;
+        }
+
+        .logo:hover {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 300;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        /* เอฟเฟกต์เส้นใต้เวลา Hover ให้ดูแพง */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--gold);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
 
         /* --- Hero Section --- */
         .hero {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        url('https://images.unsplash.com/photo-1596401057633-54a8fe8ef647?q=80&w=1600') center/cover;
-            color: white; text-align: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&q=80&w=2000') center/cover;
+            color: var(--white);
         }
-        .hero-title h1 { font-family: 'Cormorant Garamond', serif; font-size: 7rem; font-style: italic; letter-spacing: -2px; }
-        .hero-title p { letter-spacing: 8px; font-weight: 200; text-transform: uppercase; margin-top: 10px; }
 
-        /* --- Interactive Content Area --- */
-        .content-container { max-width: 1200px; margin: -100px auto 100px; position: relative; z-index: 10; }
-
-        /* Dynamic Page Section */
-        .page {
-            background: var(--white); padding: 80px; display: none;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.05); animation: fadeInUp 0.8s ease forwards;
+        .hero-content h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            letter-spacing: 15px;
+            margin-bottom: 10px;
+            animation: fadeInUp 1.5s ease;
         }
-        .page.active { display: block; }
 
-        .category-label { color: var(--gold); font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 20px; display: block; }
-        .page-title { font-family: 'Cormorant Garamond', serif; font-size: 4rem; line-height: 1; margin-bottom: 40px; }
+        .hero-content p {
+            font-weight: 200;
+            letter-spacing: 6px;
+            font-size: 1.1rem;
+            animation: fadeInUp 2s ease;
+        }
 
-        /* Infographic Grid */
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-        .item { margin-bottom: 40px; }
-        .item h3 { font-size: 1.4rem; border-left: 3px solid var(--gold); padding-left: 15px; margin-bottom: 15px; }
-        .item p { color: #666; font-weight: 300; line-height: 1.8; }
-        .item img { width: 100%; height: 300px; object-fit: cover; margin-top: 20px; filter: grayscale(0.5); transition: 0.5s; }
-        .item img:hover { filter: grayscale(0); }
+        /* --- Infographic Gallery --- */
+        .content-section {
+            padding: 120px 10%;
+            max-width: 1600px;
+            margin: auto;
+        }
+
+        .headline {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .headline h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .headline .divider {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 20px auto;
+        }
+
+        /* --- Grid & Items --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .destination-item {
+            position: relative;
+            height: 550px;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: var(--dark);
+        }
+
+        .destination-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.75;
+            transition: 1s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .destination-item:hover img {
+            transform: scale(1.08);
+            opacity: 0.4;
+        }
+
+        .item-info {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            right: 40px;
+            color: var(--white);
+            z-index: 2;
+        }
+
+        .item-info h3 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .item-info p {
+            font-size: 0.9rem;
+            font-weight: 200;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.5s ease;
+            letter-spacing: 1px;
+        }
+
+        .destination-item:hover .item-info p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Detailed Info Overlay --- */
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--white);
+            z-index: 2000;
+            display: none;
+            grid-template-columns: 1fr 1.2fr;
+        }
+
+        .overlay-img {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .overlay-text {
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--light);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 40px; right: 40px;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: var(--gold);
+            transition: 0.3s;
+        }
+
+        .close-btn:hover { transform: rotate(90deg); }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        footer { text-align: center; padding: 60px; color: #aaa; font-size: 0.8rem; letter-spacing: 2px; }
-
-        @media (max-width: 768px) {
-            .sidebar { width: 100%; }
-            .hero-title h1 { font-size: 4rem; }
+        @media (max-width: 1024px) {
             .info-grid { grid-template-columns: 1fr; }
-            .page { padding: 40px; }
+            .overlay { grid-template-columns: 1fr; }
+            .overlay-img { display: none; }
+            nav { padding: 20px 30px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="menu-btn" onclick="toggleMenu()">
-        <span>เมนู</span>
-        <div class="bar-container">
-            <div class="bar"></div>
-            <div class="bar"></div>
+    <nav id="navbar">
+        <a href="#" class="logo">YALA</a>
+        <div class="nav-links">
+            <a href="#">หน้าหลัก</a>
+            <a href="#">สถานที่แนะนำ</a>
+            <a href="#">วัฒนธรรมอาหาร</a>
+            <a href="#">ติดต่อเรา</a>
         </div>
-    </div>
-
-    <nav class="sidebar" id="sidebar">
-        <ul class="nav-links">
-            <li style="transition-delay: 0.1s;"><a href="javascript:void(0)" onclick="showPage('dest')">สถานที่แนะนำ</a></li>
-            <li style="transition-delay: 0.2s;"><a href="javascript:void(0)" onclick="showPage('food')">รสชาติแห่งยะลา</a></li>
-            <li style="transition-delay: 0.3s;"><a href="javascript:void(0)" onclick="showPage('culture')">มรดกทางวัฒนธรรม</a></li>
-            <li style="transition-delay: 0.4s;"><a href="javascript:void(0)" onclick="showPage('travel')">การเตรียมตัวเดินทาง</a></li>
-        </ul>
     </nav>
 
     <section class="hero">
-        <div class="hero-title">
-            <p>Southern Majestic</p>
-            <h1>Yala Heritage</h1>
+        <div class="hero-content">
+            <p>สัมผัสความเหนือระดับแห่งใต้สุดสยาม</p>
+            <h1>YALA PRESTIGE</h1>
         </div>
     </section>
 
-    <div class="content-container">
-        
-        <div id="dest" class="page active">
-            <span class="category-label">DESTINATIONS</span>
-            <h2 class="page-title">ดินแดนในม่านหมอก</h2>
-            <div class="info-grid">
-                <div class="item">
-                    <h3>สกายวอล์ค อัยเยอร์เวง</h3>
-                    <p>จุดเช็คอินระดับโลกที่เบตอง ชมทะเลหมอกได้ตลอดทั้งปีบนทางเดินกระจกที่ยาวที่สุดในอาเซียน สัมผัสอากาศบริสุทธิ์ในเช้าที่แสงทองแตะขอบฟ้า</p>
-                    <img src="https://images.unsplash.com/photo-1590001158193-424a3aa6212e?q=80&w=600">
+    <section class="content-section">
+        <div class="headline">
+            <h2>จุดหมายปลายทางอันทรงคุณค่า</h2>
+            <div class="divider"></div>
+            <p>ยะลา... เมืองที่ซ่อนความหรูหราไว้ในความเงียบสงบของธรรมชาติ</p>
+        </div>
+
+        <div class="info-grid">
+            <div class="destination-item" onclick="openInfo('อัยเยอร์เวง', 'สัมผัสประสบการณ์การชมทะเลหมอกที่หรูหราที่สุดบนสกายวอล์คที่ทอดยาวเหนือผืนป่าฮาลาบาลา วิวทิวทัศน์ 360 องศาที่เปลี่ยนไปตามช่วงเวลา มอบความรู้สึกพิเศษในทุกครั้งที่มาเยือน', 'https://cms.dmpcdn.com/travel/2020/10/26/665985b0-176f-11eb-ad71-4993108c9d9f_original.JPG')">
+                <img src="https://cms.dmpcdn.com/travel/2020/10/26/665985b0-176f-11eb-ad71-4993108c9d9f_original.JPG" alt="อัยเยอร์เวง">
+                <div class="item-info">
+                    <h3>อัยเยอร์เวง</h3>
+                    <p>สกายวอล์คเหนือระดับ ทะเลหมอกที่สัมผัสได้</p>
                 </div>
-                <div class="item">
-                    <h3>อุโมงค์ปิยะมิตร</h3>
-                    <p>ประวัติศาสตร์ที่ยังมีลมหายใจ ท่ามกลางป่าลึกที่เคยเป็นฐานทัพเก่า เรียนรู้วิถีชีวิตและการต่อสู้ผ่านอุโมงค์ดินที่มีความยาวกว่า 1 กิโลเมตร</p>
-                    <img src="https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?q=80&w=600">
+            </div>
+
+            <div class="destination-item" onclick="openInfo('เสน่ห์เมืองเบตง', 'เบตงไม่ใช่แค่เมือง แต่เป็นวิถีชีวิตที่ผสมผสานความคลาสสิกของสถาปัตยกรรมและวัฒนธรรมอาหารระดับตำนาน ให้ความรู้สึกเหมือนได้พักผ่อนในบรรยากาศยุโรปทว่ามีเอกลักษณ์แบบมลายูถิ่น', 'https://img.wongnai.com/p/1920x0/2019/08/04/e9834825942f4b73b223018c1590457d.jpg')">
+                <img src="https://img.wongnai.com/p/1920x0/2019/08/04/e9834825942f4b73b223018c1590457d.jpg" alt="เบตง">
+                <div class="item-info">
+                    <h3>เมืองเบตง</h3>
+                    <p>มรดกทางวัฒนธรรมในหุบเขาอันแสนสงบ</p>
+                </div>
+            </div>
+
+            <div class="destination-item" onclick="openInfo('ทะเลสาบฮาลาบาลา', 'ล่องเรือชมความงามของอ่างเก็บน้ำเขื่อนบางลาง ที่ถูกโอบล้อมด้วยป่าดิบชื้นที่สมบูรณ์ที่สุดแห่งหนึ่งในเอเชีย ความเงียบสงบที่นี่คือความหรูหราที่เงินหาซื้อได้ยาก', 'https://s.isanook.com/tr/0/rp/rc/w850h510/yatxacm1w0/aHR0cHM6Ly9zLmlzYW5vb2suY29tL3RyLzAvdWQvMjg0LzE0MjI3NjkvYmFuZ2xhbmcuanBn.jpg')">
+                <img src="https://s.isanook.com/tr/0/rp/rc/w850h510/yatxacm1w0/aHR0cHM6Ly9zLmlzYW5vb2suY29tL3RyLzAvdWQvMjg0LzE0MjI3NjkvYmFuZ2xhbmcuanBn.jpg" alt="เขื่อนบางลาง">
+                <div class="item-info">
+                    <h3>เขื่อนบางลาง</h3>
+                    <p>ล่องเรือท่ามกลางธรรมชาติที่บริสุทธิ์และเงียบสงบ</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div id="food" class="page">
-            <span class="category-label">CUISINE</span>
-            <h2 class="page-title">รสชาติที่เป็นเอกลักษณ์</h2>
-            <div class="info-grid">
-                <div class="item">
-                    <h3>ไก่เบตองต้นตำรับ</h3>
-                    <p>เนื้อนุ่ม หนังกรุบ เป็นเอกลักษณ์ที่หาทานได้เฉพาะที่นี่ เสิร์ฟพร้อมซีอิ๊วสูตรพิเศษที่เป็นมรดกตกทอดจากรุ่นสู่รุ่น</p>
-                </div>
-                <div class="item">
-                    <h3>เฉาก๊วยเบตอง (วุ้นดำ)</h3>
-                    <p>ของหวานระดับตำนานที่เคี่ยวด้วยฟืนแบบโบราณ ให้ความหอมและเหนียวนุ่มที่แตกต่างจากที่อื่นอย่างชัดเจน</p>
-                </div>
-            </div>
+    <div id="infoOverlay" class="overlay">
+        <span class="close-btn" onclick="closeInfo()">×</span>
+        <div id="overlayImg" class="overlay-img"></div>
+        <div class="overlay-text">
+            <h2 id="overlayTitle" style="font-family: 'Cinzel', serif; font-size: 3rem; margin-bottom: 20px; color: var(--gold);"></h2>
+            <div style="width: 40px; height: 1px; background: var(--gold); margin-bottom: 30px;"></div>
+            <p id="overlayDesc" style="line-height: 2; font-size: 1.2rem; color: #444; font-weight: 300;"></p>
         </div>
-
-        <div id="culture" class="page">
-            <span class="category-label">HERITAGE</span>
-            <h2 class="page-title">ความงามพหุวัฒนธรรม</h2>
-            <div class="info-grid">
-                <div class="item">
-                    <h3>เมืองผังเมืองสวยที่สุด</h3>
-                    <p>ยะลาได้รับการยกย่องว่าเป็นจังหวัดที่มีผังเมืองเป็นระเบียบและสวยที่สุดในไทย โดยมีศาลเจ้าพ่อหลักเมืองเป็นศูนย์กลางการวางผังแบบใยแมงมุม</p>
-                </div>
-                <div class="item">
-                    <h3>งานสมโภชเจ้าแม่ลิ้มกอเหนี่ยว</h3>
-                    <p>สะท้อนความเชื่อและความศรัทธาของชาวไทยเชื้อสายจีนในพื้นที่ ซึ่งอยู่ร่วมกับวัฒนธรรมอื่นๆ ได้อย่างกลมเกลียว</p>
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <footer>
-        <p>YALA | THE ESSENCE OF SOUTHERN THAILAND</p>
-        <p style="margin-top: 10px; font-weight: 100;">จัดทำเพื่อการนำเสนอการท่องเที่ยวระดับพรีเมียม © 2026</p>
-    </footer>
-
     <script>
-        function toggleMenu() {
-            document.getElementById('sidebar').classList.toggle('active');
+        // ควบคุม Navbar เมื่อเลื่อนหน้าจอ
+        window.onscroll = function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        };
+
+        // ฟังก์ชันเปิดแสดงข้อมูลเพิ่มเติม
+        function openInfo(title, desc, img) {
+            document.getElementById('overlayTitle').innerText = title;
+            document.getElementById('overlayDesc').innerText = desc;
+            document.getElementById('overlayImg').style.backgroundImage = `url('${img}')`;
+            document.getElementById('infoOverlay').style.display = 'grid';
+            document.body.style.overflow = 'hidden'; // ล็อกการเลื่อนหน้าจอ
         }
 
-        function showPage(pageId) {
-            // ปิด Sidebar
-            toggleMenu();
-
-            // ซ่อนหน้าปัจจุบันทั้งหมด
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(p => p.classList.remove('active'));
-
-            // แสดงหน้าใหม่ที่เลือก
-            const targetPage = document.getElementById(pageId);
-            if(targetPage) {
-                targetPage.classList.add('active');
-                // เลื่อนหน้าจอไปที่ส่วนเนื้อหา
-                targetPage.scrollIntoView({ behavior: 'smooth' });
-            }
+        function closeInfo() {
+            document.getElementById('infoOverlay').style.display = 'none';
+            document.body.style.overflow = 'auto'; // คืนค่าการเลื่อนหน้าจอ
         }
     </script>
 </body>
