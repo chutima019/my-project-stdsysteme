@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yala | The Hidden Gem of Southern Thailand</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1b3022; /* เขียวเข้มป่าไม้ */
+            --accent-gold: #c5a059; /* ทองหรูหรา */
+            --bg-cream: #f9f7f2;
+            --text-main: #333;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-main);
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        header {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1580193153300-3309a478950d?auto=format&fit=crop&q=80&w=1600') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-gold);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+        }
+
+        /* Infographic Grid */
+        .container {
+            max-width: 1100px;
+            margin: -50px auto 50px;
+            padding: 20px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+        }
+
+        .icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Interactive Details Area */
+        #detail-view {
+            margin-top: 50px;
+            padding: 40px;
+            background: var(--primary-dark);
+            color: white;
+            border-radius: 15px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .btn-close {
+            background: var(--accent-gold);
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+            float: right;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>YALA</h1>
+    <p>สัมผัสมนต์เสน่ห์แห่งใต้สุดสยาม</p>
+</header>
+
+<div class="container">
+    <div class="info-grid">
+        <div class="info-card" onclick="showDetail('skywalk')">
+            <div class="icon">☁️</div>
+            <h3>Aiyerweng</h3>
+            <p>ทะเลหมอกอัยเยอร์เวง สกายวอล์คที่ยาวที่สุดในอาเซียน</p>
+        </div>
+
+        <div class="info-card" onclick="showDetail('tunnel')">
+            <div class="icon">🕯️</div>
+            <h3>Mongkhonrit Tunnel</h3>
+            <p>อุโมงค์ลอดภูเขาแห่งแรกของประเทศไทย ใจกลางเมืองเบตง</p>
+        </div>
+
+        <div class="info-card" onclick="showDetail('forest')">
+            <div class="icon">🌿</div>
+            <h3>Hala-Bala</h3>
+            <p>อเมซอนแห่งอาเซียน ความสมบูรณ์ที่หาที่ไหนไม่ได้</p>
+        </div>
+    </div>
+
+    <div id="detail-view">
+        <button class="btn-close" onclick="closeDetail()">ปิด X</button>
+        <h2 id="detail-title">หัวข้อ</h2>
+        <hr style="border-color: var(--accent-gold);">
+        <p id="detail-desc">รายละเอียดเนื้อหา...</p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Yala Tourism Infographic | Crafted with Elegance</p>
+</footer>
+
+<script>
+    const data = {
+        skywalk: {
+            title: "สกายวอล์คอัยเยอร์เวง (Aiyerweng)",
+            desc: "จุดชมทะเลหมอกที่สวยที่สุดในภาคใต้ มีความสูงเหนือระดับน้ำทะเล 2,038 ฟุต คุณสามารถชมหมอกได้ตลอดทั้งปีแม้ในฤดูร้อน โครงสร้างสถาปัตยกรรมเน้นความทันสมัยและปลอดภัยระดับสากล"
+        },
+        tunnel: {
+            title: "อุโมงค์เบตงมงคลฤทธิ์",
+            desc: "อุโมงค์รถยนต์ลอดภูเขาที่เชื่อมต่อใจกลางเมืองเบตง ตกแต่งด้วยไฟ LED สีสันสวยงามในยามค่ำคืน สะท้อนถึงวิถีชีวิตที่ทันสมัยแต่ยังคงกลิ่นอายประวัติศาสตร์ของอำเภอเบตง"
+        },
+        forest: {
+            title: "ป่าฮาลาบาลา (Hala-Bala Forest)",
+            desc: "เขตรักษาพันธุ์สัตว์ป่าที่เป็นรอยต่อระหว่างยะลาและนราธิวาส เป็นที่อยู่ของนกเงือกหลากหลายชนิดและสัตว์หายาก เหมาะสำหรับผู้ที่หลงใหลในธรรมชาติที่บริสุทธิ์และการท่องเที่ยวเชิงอนุรักษ์"
+        }
+    };
+
+    function showDetail(id) {
+        document.getElementById('detail-title').innerText = data[id].title;
+        document.getElementById('detail-desc').innerText = data[id].desc;
+        document.getElementById('detail-view').style.display = 'block';
+        
+        // Scroll ลงมาดูข้อมูล
+        window.scrollTo({
+            top: document.getElementById('detail-view').offsetTop - 50,
+            behavior: 'smooth'
+        });
+    }
+
+    function closeDetail() {
+        document.getElementById('detail-view').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
