@@ -3,142 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ข้อมูลจังหวัดยะลา | YALA Heritage</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Prompt:wght@100;300;400;600&display=swap" rel="stylesheet">
+    <title>RECOMMENDED | YALA PRESTIGE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pridi:wght@200;300;400&display=swap" rel="stylesheet">
     <style>
-        /* ดึง Root และ Theme เดียวกันกับหน้า index.html */
         :root {
-            --gold: #AF9164;
-            --dark: #0F1110;
-            --cream: #FDFBF7;
-            --white: #FFFFFF;
-            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --gold: #af944d;
+            --dark: #121212;
+            --light: #f9f7f2;
+            --white: #ffffff;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Prompt', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
-
-        /* --- Sidebar Menu (รักษาคอนเซปต์เดิม) --- */
-        .menu-btn {
-            position: fixed; top: 40px; right: 50px; z-index: 2000;
-            display: flex; align-items: center; gap: 15px;
-            cursor: pointer; color: var(--gold); font-size: 1.1rem; letter-spacing: 2px;
-        }
-        .bar { width: 30px; height: 1px; background: var(--gold); margin: 6px 0; }
-
-        .sidebar {
-            position: fixed; top: 0; right: -100%; width: 450px; height: 100vh;
-            background: var(--dark); z-index: 1500; transition: var(--transition);
-            display: flex; flex-direction: column; justify-content: center; padding: 80px;
-        }
-        .sidebar.active { right: 0; }
-        .sidebar a {
-            color: var(--white); text-decoration: none; font-size: 1.8rem; font-weight: 300;
-            display: block; margin: 30px 0; transition: 0.3s;
-        }
-        .sidebar a:hover { color: var(--gold); padding-left: 20px; }
-
-        /* --- Province Header --- */
-        .province-hero {
-            height: 60vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1590001158193-424a3aa6212e?q=80&w=1600') center/cover;
-            display: flex; align-items: center; justify-content: center; color: white;
-        }
-        .hero-title { text-align: center; }
-        .hero-title h1 { font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-style: italic; }
-
-        /* --- Content Layout (Infographic Style) --- */
-        .container { max-width: 1200px; margin: -80px auto 100px; position: relative; z-index: 10; }
-        
-        .info-card-large {
-            background: var(--white); padding: 80px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
-            margin-bottom: 50px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .category-tag { color: var(--gold); font-size: 0.9rem; letter-spacing: 3px; display: block; margin-bottom: 20px; }
-        
-        /* Stats Grid */
-        .stats-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 40px; border-top: 1px solid #eee; margin-top: 40px; padding-top: 40px;
+        body {
+            background-color: var(--light);
+            font-family: 'Pridi', sans-serif;
+            color: var(--dark);
+            overflow-x: hidden;
         }
-        .stat-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--gold); }
-        .stat-box p { font-size: 0.9rem; color: #888; text-transform: uppercase; }
 
-        /* Typography */
-        .section-desc { font-size: 1.2rem; line-height: 2; color: #444; font-weight: 300; margin-bottom: 30px; }
+        /* --- Navigation (Same as Index) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(175, 148, 77, 0.1);
+        }
 
-        footer { text-align: center; padding: 60px; color: #aaa; font-size: 0.8rem; letter-spacing: 2px; }
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            letter-spacing: 6px;
+            color: var(--dark);
+            text-decoration: none;
+            border: 1px solid var(--gold);
+            padding: 5px 20px;
+        }
 
-        @media (max-width: 768px) {
-            .stats-grid { grid-template-columns: 1fr; }
-            .info-card-large { padding: 40px; }
-            .hero-title h1 { font-size: 3rem; }
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 300;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        /* --- Page Header --- */
+        .page-header {
+            padding: 180px 10% 60px;
+            text-align: center;
+            background: var(--white);
+        }
+
+        .page-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            letter-spacing: 10px;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .gold-divider {
+            width: 80px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto 30px;
+        }
+
+        /* --- Recommendation List --- */
+        .recommend-container {
+            padding: 60px 10%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .spotlight-item {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            margin-bottom: 120px;
+            align-items: center;
+        }
+
+        .spotlight-item:nth-child(even) {
+            grid-template-columns: 1fr 1.2fr;
+        }
+
+        .spotlight-item:nth-child(even) .spotlight-img {
+            order: 2;
+        }
+
+        .spotlight-img {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            box-shadow: 20px 20px 0px var(--gold);
+        }
+
+        .spotlight-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 1.5s;
+        }
+
+        .spotlight-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .spotlight-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .spotlight-content p {
+            line-height: 1.8;
+            font-weight: 300;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .btn-detail {
+            display: inline-block;
+            padding: 12px 35px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .btn-detail:hover {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        @media (max-width: 1024px) {
+            .spotlight-item, .spotlight-item:nth-child(even) {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .spotlight-img { order: 1 !important; height: 350px; }
+            .spotlight-content { order: 2; }
+            nav { padding: 20px 30px; }
+            .nav-links { display: none; } /* ซ่อนเมนูในมือถือเพื่อความสะอาดตา */
         }
     </style>
 </head>
 <body>
 
-    <div class="menu-btn" onclick="toggleMenu()">
-        <span>เมนู</span>
-        <div class="bar-container"><div class="bar"></div><div class="bar"></div></div>
-    </div>
-
-    <nav class="sidebar" id="sidebar">
-        <a href="index.html">หน้าแรก</a>
-        <a href="#history">ประวัติความเป็นมา</a>
-        <a href="#geography">ภูมิศาสตร์</a>
-        <a href="#planning">ผังเมืองยะลา</a>
+    <nav>
+        <a href="index.html" class="logo">YALA</a>
+        <div class="nav-links">
+            <a href="index.html">หน้าหลัก</a>
+            <a href="recommendations.html" style="color: var(--gold);">สถานที่แนะนำ</a>
+            <a href="#">วัฒนธรรมอาหาร</a>
+            <a href="#">ติดต่อเรา</a>
+        </div>
     </nav>
 
-    <header class="province-hero">
-        <div class="hero-title">
-            <h1>The City of Harmony</h1>
-            <p style="letter-spacing: 5px;">ข้อมูลทั่วไปของจังหวัดยะลา</p>
-        </div>
+    <header class="page-header">
+        <h1>MUST VISIT</h1>
+        <div class="gold-divider"></div>
+        <p>คัดสรรจุดหมายปลายทางที่สะท้อนความสง่างามแห่งยะลา</p>
     </header>
 
-    <main class="container">
-        <section id="history" class="info-card-large">
-            <span class="category-tag">HISTORY</span>
-            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; margin-bottom: 30px;">ประวัติความเป็นมา</h2>
-            <p class="section-desc">
-                ยะลาเป็นจังหวัดที่ตั้งอยู่ใต้สุดของประเทศไทย เดิมเป็นส่วนหนึ่งของเมืองปัตตานี คำว่า "ยะลา" มาจากคำว่า "ยาลอ" ในภาษามลายูท้องถิ่น ซึ่งแปลว่า "แห" 
-                สะท้อนถึงวิถีชีวิตดั้งเดิมที่ผูกพันกับสายน้ำและธรรมชาติที่อุดมสมบูรณ์
-            </p>
-            <div class="stats-grid">
-                <div class="stat-box"><h3>8</h3><p>อำเภอ</p></div>
-                <div class="stat-box"><h3>4,521</h3><p>ตร.กม. พื้นที่จังหวัด</p></div>
-                <div class="stat-box"><h3>1933</h3><p>ปีที่จัดตั้งจังหวัด</p></div>
+    <section class="recommend-container">
+        
+        <div class="spotlight-item">
+            <div class="spotlight-img">
+                <img src="https://f.ptcdn.info/160/067/000/q1n26p79pX8lH8r6X6-o.jpg" alt="อุโมงค์เบตง">
             </div>
-        </section>
-
-        <section id="planning" class="info-card-large" style="background: var(--dark); color: white;">
-            <span class="category-tag" style="color: var(--gold);">URBAN DESIGN</span>
-            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; margin-bottom: 30px; color: var(--gold);">ผังเมืองที่ดีที่สุด</h2>
-            <p class="section-desc" style="color: #ccc;">
-                ยะลาได้รับการยอมรับว่าเป็นจังหวัดที่มีผังเมืองเป็นระเบียบที่สุดในประเทศไทย โดยมีลักษณะเป็น "ใยแมงมุม" 
-                มีวงเวียนซ้อนกัน 3 ชั้น โดยมีศาลเจ้าพ่อหลักเมืองเป็นจุดศูนย์กลาง ซึ่งออกแบบโดยพระยาสิงหเสนี (สะอาด สิงหเสนี)
-            </p>
-            <div style="border-left: 1px solid var(--gold); padding-left: 20px; margin-top: 30px;">
-                <p>ชั้นใน: สถานที่ราชการ</p>
-                <p>ชั้นกลาง: ย่านธุรกิจการค้า</p>
-                <p>ชั้นนอก: ที่พักอาศัยและสวนสาธารณะ</p>
+            <div class="spotlight-content">
+                <h2>อุโมงค์เบตงมงคลฤทธิ์</h2>
+                <p>อุโมงค์ลอดภูเขาแห่งแรกของประเทศไทย ที่เชื่อมต่อใจกลางเมืองเบตงเข้ากับส่วนขยายของเมือง ในยามค่ำคืนจะมีการประดับไฟอย่างสวยงาม สะท้อนถึงความรุ่งเรืองและสถาปัตยกรรมที่เหนือกาลเวลา</p>
+                <a href="#" class="btn-detail">VIEW GALLERY</a>
             </div>
-        </section>
-    </main>
+        </div>
 
-    <footer>
-        <p>YALA HERITAGE | INFORMATION CENTER</p>
-        <p style="margin-top: 10px;">© 2026 YALA TOURISM OFFICE</p>
+        <div class="spotlight-item">
+            <div class="spotlight-img">
+                <img src="https://paimay.com/wp-content/uploads/2020/12/127111818_1066579977114115_7812502690940428399_n.jpg" alt="สวนหมื่นบุปผา">
+            </div>
+            <div class="spotlight-content">
+                <h2>สวนหมื่นบุปผา</h2>
+                <p>สวนดอกไม้เมืองหนาวที่ตั้งอยู่ท่ามกลางหุบเขา สัมผัสอากาศที่เย็นสบายตลอดทั้งปีและทัศนียภาพของดอกไม้นานาพันธุ์ที่ถูกจัดวางอย่างวิจิตรบรรจงประดุจภาพวาดในยุโรป</p>
+                <a href="#" class="btn-detail">VIEW GALLERY</a>
+            </div>
+        </div>
+
+        <div class="spotlight-item">
+            <div class="spotlight-img">
+                <img src="https://thailandtourismdirectory.go.th/static/assets/uploads/images/2021/04/05/29f8c6b772b144e590453887d1887e50.jpg" alt="วัดคูหาภิมุข">
+            </div>
+            <div class="spotlight-content">
+                <h2>วัดคูหาภิมุข</h2>
+                <p>หนึ่งในปูชนียสถานอันทรงคุณค่าที่สุดของภาคใต้ ภายในถ้ำประดิษฐานพระพุทธไสยาสน์ขนาดใหญ่สมัยศรีวิชัย ท่ามกลางบรรยากาศที่เงียบสงบและเปี่ยมด้วยพลังแห่งศรัทธา</p>
+                <a href="#" class="btn-detail">VIEW GALLERY</a>
+            </div>
+        </div>
+
+    </section>
+
+    <footer style="text-align: center; padding: 60px; background: var(--dark); color: var(--gold); letter-spacing: 2px; font-size: 0.7rem;">
+        &copy; 2024 YALA PRESTIGE - THE ULTIMATE SOUTHERN EXPERIENCE
     </footer>
 
-    <script>
-        function toggleMenu() {
-            document.getElementById('sidebar').classList.toggle('active');
-        }
-    </script>
 </body>
 </html>
